@@ -11,7 +11,7 @@ RESET='\033[0m'
 
 usage() {
     echo "Usage: $0 [installer1] [installer2] ..."
-    echo "可用的命令:"
+    echo "Avalable installer:"
     # 尋找 commands 目錄下的 .sh 檔案，並移除路徑和 .sh 副檔名
     ls -1 "${INSTALLER_DIR}"/*.sh | sed -e 's|.*/||' -e 's|\.sh$||' | xargs -n1 -I{} echo "  -" {}
     exit 1
