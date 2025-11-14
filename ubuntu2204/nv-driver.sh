@@ -2,13 +2,13 @@
 set -e
 set -o pipefail
 
-NAME='NVIDIA Dirver'
+NAME='NVIDIA Driver'
 
 GREEN='\033[0;32m'
 RED='\033[0;31m'
 RESET='\033[0m'
 
-export DEBIAN_FRONTEND=noninteractive
+
 
 function preprocess() {
     echo -e "${GREEN}--- ${NAME} Pre-process ---${RESET}"
@@ -29,7 +29,7 @@ function preprocess() {
 function install() {
     echo -e "${GREEN}--- ${NAME} Install ---${RESET}"
     
-    sudo apt install -y nvidia-driver-580
+    sudo DEBIAN_FRONTEND=noninteractive apt install -y nvidia-driver-580
     
     echo -e "${GREEN}--- ${NAME} Install complete ---${RESET}\n"
 }

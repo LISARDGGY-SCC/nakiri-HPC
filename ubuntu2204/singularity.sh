@@ -8,7 +8,7 @@ GREEN='\033[0;32m'
 RED='\033[0;31m'
 RESET='\033[0m'
 
-export DEBIAN_FRONTEND=noninteractive
+
 
 function preprocess() {
     echo -e "${GREEN}--- ${NAME} Pre-process ---${RESET}"
@@ -24,7 +24,7 @@ function install() {
     echo -e "${GREEN}--- ${NAME} Install ---${RESET}"
     
     wget https://github.com/sylabs/singularity/releases/download/v4.3.4/singularity-ce_4.3.4-jammy_amd64.deb
-    sudo apt install -y ./singularity-ce_4.3.4-jammy_amd64.deb
+    sudo DEBIAN_FRONTEND=noninteractive apt install -y ./singularity-ce_4.3.4-jammy_amd64.deb
     rm -rf ./singularity-ce_4.3.4-jammy_amd64.deb
     
     echo -e "${GREEN}--- ${NAME} Install complete ---${RESET}\n"

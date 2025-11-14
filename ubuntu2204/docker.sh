@@ -8,13 +8,13 @@ GREEN='\033[0;32m'
 RED='\033[0;31m'
 RESET='\033[0m'
 
-export DEBIAN_FRONTEND=noninteractive
+
 
 function preprocess() {
     echo -e "${GREEN}--- ${NAME} Pre-process ---${RESET}"
     
     # Add Docker's official GPG key:
-    sudo apt install -y ca-certificates curl
+    sudo DEBIAN_FRONTEND=noninteractive apt install -y ca-certificates curl
     sudo install -m 0755 -d /etc/apt/keyrings
     sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
     sudo chmod a+r /etc/apt/keyrings/docker.asc
@@ -34,7 +34,7 @@ EOF
 function install() {
     echo -e "${GREEN}--- ${NAME} Install ---${RESET}"
     
-    sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    sudo DEBIAN_FRONTEND=noninteractive apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     
     echo -e "${GREEN}--- ${NAME} Install complete ---${RESET}\n"
 }
