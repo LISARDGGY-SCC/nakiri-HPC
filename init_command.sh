@@ -4,7 +4,7 @@ set -e
 echo "blacklist nouveau" | sudo tee /etc/modprobe.d/blacklist-nouveau.conf
 echo "options nouveau modeset=0" | sudo tee -a /etc/modprobe.d/blacklist-nouveau.conf
 sudo update-initramfs -u
-sudo modprobe -r nouveau || echo "nouveau module not loaded or could not be removed."
+(sudo modprobe -r nouveau || echo "nouveau module not loaded or could not be removed.")
 
 sudo apt-get update
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libc-dev linux-headers-$(uname -r) ca-certificates curl gnupg2
@@ -35,7 +35,15 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
     libnvidia-container-tools=1.18.0-1 \
     libnvidia-container1=1.18.0-1
 
-sudo groupadd docker
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nvtop
+
+wget https://github.com/sylabs/singularity/releases/download/v4.3.4/singularity-ce_4.3.4-jammy_amd64.deb
+sudo DEBIAN_FRONTEND=noninteractive apt install -y ./singularity-ce_4.3.4-jammy_amd64.deb
+rm -rf ./singularity-ce_4.3.4-jammy_amd64.deb
+
+sudo nvidia-ctk runtime configure --runtime=docker
+sudo systemctl restart docker
+(sudo groupadd docker || true)
 sudo usermod -aG docker "${SUDO_USER:-$(whoami)}"
 echo 'export PATH=/usr/local/cuda-13.0/bin${PATH:+:${PATH}}' >> ~/.bashrc
 echo 'export LD_LIBRARY_PATH=/usr/local/cuda-13.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}' >> ~/.bashrc
