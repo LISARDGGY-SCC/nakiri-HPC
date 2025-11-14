@@ -23,7 +23,7 @@ function preprocess() {
 function install() {
     echo -e "${GREEN}--- ${NAME} Install ---${RESET}"
     
-    sudo DEBIAN_FRONTEND=noninteractive apt -y install cuda-runtime-13.0 cuda-compiler-13.0 cuda-libraries-dev-13.0
+    sudo DEBIAN_FRONTEND=noninteractive apt-get -y install cuda-runtime-13.0 cuda-compiler-13.0 cuda-libraries-dev-13.0
     
     echo -e "${GREEN}--- ${NAME} Install complete ---${RESET}\n"
 }
@@ -47,9 +47,9 @@ function usage() {
 }
 
 if [ "$#" -eq 0 ]; then
-    sudo apt update
+    sudo apt-get update
     preprocess
-    sudo apt update
+    sudo apt-get update
     install
     postprocess
 elif [ "$#" -eq 1 ]; then

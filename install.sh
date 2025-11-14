@@ -18,7 +18,7 @@ usage() {
 }
 
 if [ "$#" -eq 0 ]; then
-    echo "${RED}ERROR: Need at least one installer${RESET}"
+    echo -e "${RED}ERROR: Need at least one installer${RESET}"
     usage
 fi
 
@@ -32,7 +32,7 @@ for installer in "$@"; do
         sudo "$script_file" --pre
     else
         echo "----------------------------"
-        echo "${RED}ERROR: File '${installer}'.sh not found.${RESET}"
+        echo -e "${RED}ERROR: File '${installer}'.sh not found.${RESET}"
         exit 1
     fi
 done
@@ -47,7 +47,7 @@ for installer in "$@"; do
         sudo "$script_file" --install
     else
         echo "----------------------------"
-        echo "${RED}ERROR: File '${installer}'.sh not found.${RESET}"
+        echo -e "${RED}ERROR: File '${installer}'.sh not found.${RESET}"
         exit 1
     fi
 done
@@ -61,9 +61,9 @@ for installer in "$@"; do
         sudo "$script_file" --post
     else
         echo "----------------------------"
-        echo "${RED}ERROR: File '${installer}'.sh not found.${RESET}"
+        echo -e "${RED}ERROR: File '${installer}'.sh not found.${RESET}"
         exit 1
     fi
 done
 
-echo "${GREEN}All installation completed${RESET}"
+echo -e "${GREEN}All installation completed${RESET}"
