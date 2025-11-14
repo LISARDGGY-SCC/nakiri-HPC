@@ -13,7 +13,7 @@ usage() {
     echo "Usage: $0 [installer1] [installer2] ..."
     echo "Avalable installer:"
     # 尋找 commands 目錄下的 .sh 檔案，並移除路徑和 .sh 副檔名
-    ls -1 "${INSTALLER_DIR}"/*.sh | sed -e 's|.*/||' -e 's|\.sh$||' | xargs -I{} echo "  -" {}
+    ls -1 "${INSTALLER_DIR}"/*.sh | sed -e 's|.*/||' -e 's|\.sh$||' -e 's|template||' | xargs -I{} echo "  -" {}
     exit 1
 }
 
