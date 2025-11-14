@@ -23,7 +23,7 @@ function preprocess() {
 function install() {
     echo -e "${GREEN}--- ${NAME} Install ---${RESET}"
     
-    sudo apt-get install -y nvtop
+    sudo apt install -y nvtop
     
     echo -e "${GREEN}--- ${NAME} Install complete ---${RESET}\n"
 }

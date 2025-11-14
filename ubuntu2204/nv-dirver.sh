@@ -18,8 +18,8 @@ function preprocess() {
     sudo update-initramfs -u
     (sudo modprobe -r nouveau || echo "nouveau module not loaded or could not be removed.")
 
-    apt install linux-headers-$(uname -r)
-    wget https://developer.download.nvidia.com/compute/cuda/repos/$distro/x86_64/cuda-keyring_1.1-1_all.deb
+    apt install -y linux-headers-$(uname -r)
+    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
     dpkg -i cuda-keyring_1.1-1_all.deb
     rm cuda-keyring_1.1-1_all.deb
     

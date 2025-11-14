@@ -13,8 +13,8 @@ export DEBIAN_FRONTEND=noninteractive
 function preprocess() {
     echo -e "${GREEN}--- ${NAME} Pre-process ---${RESET}"
     
-    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.debsudo 
-    dpkg -i cuda-keyring_1.1-1_all.deb
+    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
+    sudo dpkg -i cuda-keyring_1.1-1_all.deb
     rm cuda-keyring_1.1-1_all.deb
     
     echo -e "${GREEN}--- ${NAME} Pre-process complete ---${RESET}\n"
@@ -23,7 +23,7 @@ function preprocess() {
 function install() {
     echo -e "${GREEN}--- ${NAME} Install ---${RESET}"
     
-    sudo apt-get -y install cuda-runtime-13.0 cuda-compiler-13.0 cuda-libraries-dev-13.0
+    sudo DEBIAN_FRONTEND=noninteractive apt -y install cuda-runtime-13.0 cuda-compiler-13.0 cuda-libraries-dev-13.0
     
     echo -e "${GREEN}--- ${NAME} Install complete ---${RESET}\n"
 }

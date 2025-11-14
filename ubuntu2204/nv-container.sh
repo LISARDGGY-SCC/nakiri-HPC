@@ -13,7 +13,7 @@ export DEBIAN_FRONTEND=noninteractive
 function preprocess() {
     echo -e "${GREEN}--- ${NAME} Pre-process ---${RESET}"
     
-    sudo apt-get install -y --no-install-recommends curl gnupg2
+    sudo apt install -y --no-install-recommends curl gnupg2
     curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
     curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
         sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
@@ -27,7 +27,7 @@ function install() {
     echo -e "${GREEN}--- ${NAME} Install ---${RESET}"
     
     export NVIDIA_CONTAINER_TOOLKIT_VERSION=1.18.0-1
-    sudo apt-get install -y \
+    sudo apt install -y \
         nvidia-container-toolkit=${NVIDIA_CONTAINER_TOOLKIT_VERSION} \
         nvidia-container-toolkit-base=${NVIDIA_CONTAINER_TOOLKIT_VERSION} \
         libnvidia-container-tools=${NVIDIA_CONTAINER_TOOLKIT_VERSION} \
