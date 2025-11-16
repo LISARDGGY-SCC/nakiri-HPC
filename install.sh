@@ -29,6 +29,7 @@ for installer in "$@"; do
     if ! [ -f "$script_file" ]; then
         echo "----------------------------"
         echo -e "${RED}ERROR: File '${installer}'.sh not found.${RESET}"
+        usage
         exit 1
     fi
 done
