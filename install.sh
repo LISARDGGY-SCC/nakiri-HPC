@@ -22,6 +22,17 @@ if [ "$#" -eq 0 ]; then
     usage
 fi
 
+# Check argument
+for installer in "$@"; do
+    script_file="${INSTALLER_DIR}/${installer}.sh"
+
+    if ! [ -f "$script_file" ]; then
+        echo "----------------------------"
+        echo -e "${RED}ERROR: File '${installer}'.sh not found.${RESET}"
+        exit 1
+    fi
+done
+
 # Pre-process all
 sudo apt update
 for installer in "$@"; do
@@ -33,7 +44,6 @@ for installer in "$@"; do
     else
         echo "----------------------------"
         echo -e "${RED}ERROR: File '${installer}'.sh not found.${RESET}"
-        exit 1
     fi
 done
 
@@ -48,7 +58,6 @@ for installer in "$@"; do
     else
         echo "----------------------------"
         echo -e "${RED}ERROR: File '${installer}'.sh not found.${RESET}"
-        exit 1
     fi
 done
 
@@ -62,7 +71,6 @@ for installer in "$@"; do
     else
         echo "----------------------------"
         echo -e "${RED}ERROR: File '${installer}'.sh not found.${RESET}"
-        exit 1
     fi
 done
 
