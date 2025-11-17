@@ -23,7 +23,7 @@ function preprocess() {
 function install() {
     echo -e "${GREEN}--- ${NAME} Install ---${RESET}"
     
-    sudo DEBIAN_FRONTEND=noninteractive apt-get -y install cuda-runtime-13.0 cuda-compiler-13.0 cuda-libraries-dev-13.0
+    sudo DEBIAN_FRONTEND=noninteractive apt-get -y install cuda-toolkit-13-0
     
     echo -e "${GREEN}--- ${NAME} Install complete ---${RESET}\n"
 }
@@ -31,8 +31,8 @@ function install() {
 function postprocess() {
     echo -e "${GREEN}--- ${NAME} Post-process ---${RESET}"
     
-    echo 'export PATH=/usr/local/cuda-13.0/bin${PATH:+:${PATH}}' >> ~/.bashrc
-    echo 'export LD_LIBRARY_PATH=/usr/local/cuda-13.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}' >> ~/.bashrc
+    echo 'export PATH=${PATH}:/usr/local/cuda-13.0/bin' >> ~/.bashrc
+    echo 'export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda-13.0/lib64' >> ~/.bashrc
     
     echo -e "${GREEN}--- ${NAME} Post-process complete ---${RESET}\n"
 }
