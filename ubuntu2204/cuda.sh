@@ -31,8 +31,8 @@ function install() {
 function postprocess() {
     echo -e "${GREEN}--- ${NAME} Post-process ---${RESET}"
     
-    echo 'export PATH=${PATH}:/usr/local/cuda-13.0/bin' >> /home/$USER/.bashrc
-    echo 'export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda-13.0/lib64' >> /home/$USER/.bashrc
+    echo 'export PATH=${PATH}:/usr/local/cuda-13.0/bin' >> ~/.bashrc
+    echo 'export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda-13.0/lib64' >> ~/.bashrc
     
     echo -e "${GREEN}--- ${NAME} Post-process complete ---${RESET}\n"
 }

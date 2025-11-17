@@ -41,7 +41,7 @@ for installer in "$@"; do
 
     if [ -f "$script_file" ] && [ -x "$script_file" ]; then
         echo "----------------------------"
-        sudo "$script_file" --pre
+        "$script_file" --pre
     else
         echo "----------------------------"
         echo -e "${RED}ERROR: File '${installer}'.sh not found.${RESET}"
@@ -55,7 +55,7 @@ for installer in "$@"; do
 
     if [ -f "$script_file" ] && [ -x "$script_file" ]; then
         echo "----------------------------"
-        sudo "$script_file" --install
+        "$script_file" --install
     else
         echo "----------------------------"
         echo -e "${RED}ERROR: File '${installer}'.sh not found.${RESET}"
@@ -68,7 +68,7 @@ for installer in "$@"; do
 
     if [ -f "$script_file" ] && [ -x "$script_file" ]; then
         echo "----------------------------"
-        sudo "$script_file" --post
+        "$script_file" --post
     else
         echo "----------------------------"
         echo -e "${RED}ERROR: File '${installer}'.sh not found.${RESET}"
