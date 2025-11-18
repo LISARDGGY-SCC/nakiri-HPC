@@ -29,7 +29,7 @@ function preprocess() {
 function install() {
     echo -e "${GREEN}--- ${NAME} Install ---${RESET}"
     
-    sudo DEBIAN_FRONTEND=noninteractive apt install -y nvidia-driver-580
+    sudo DEBIAN_FRONTEND=noninteractive apt install -y nvidia-driver-535
     
     echo -e "${GREEN}--- ${NAME} Install complete ---${RESET}\n"
 }
