@@ -11,7 +11,7 @@ chmod +x install.sh
 git clone https://github.com/nakiridaisuki/HPC.git
 cd HPC
 chmod +x install.sh
-./install.sh nv-driver cuda openmpi singularity others
+./install.sh nv-driver cuda openmpi singularity nv-container others
 ```
 
 # Using docker
