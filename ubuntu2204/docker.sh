@@ -44,6 +44,7 @@ function postprocess() {
     
     (sudo groupadd docker || true)
     sudo usermod -aG docker "${SUDO_USER:-$(whoami)}"
+    newgrp docker
     
     echo -e "${GREEN}--- ${NAME} Post-process complete ---${RESET}\n"
 }

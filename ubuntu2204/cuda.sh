@@ -33,6 +33,7 @@ function postprocess() {
     
     echo 'export PATH=${PATH}:/usr/local/cuda-12.2/bin' >> ~/.bashrc
     echo 'export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda-12.2/lib64' >> ~/.bashrc
+    source ~/.bashrc
     
     echo -e "${GREEN}--- ${NAME} Post-process complete ---${RESET}\n"
 }
