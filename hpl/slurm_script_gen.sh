@@ -1,12 +1,12 @@
-
-
 NUM_GPUS=4
 NUM_NODES=1
 AUTO_SUBMIT=false
-SIF_PATH=$HOME/HPL/hpc-benchmarks:21.4.sif
+WORKSPACE=$(pwd)
+SIF_PATH=$WORKSPACE/hpc-benchmarks:21.4.sif
 SLURM_PART=test
 HPL_NB=384
 VRAM=32
+FORCE=false
 
 usage() {
         echo "Usage: %0 [options]"
@@ -18,8 +18,8 @@ usage() {
         echo "-nb, --hpl-nb <number>    NB of hpl's .dat, default $HPL_NB"
         echo "-r, --gpu-vram <number>   <number>G VRAM per GPU, default $VRAM"
         echo "-h, --help                show this help"
-
-        echo "--path <path>             setting singularity file path, default $SIF_PATH"
+        echo "-w, --workspace <path>    setting workspace, default \$(pwd) ($WORKSPACE)"
+        echo "-f, --force               force generate new .dat file"
         exit 1
 }
 
@@ -56,8 +56,12 @@ while [[ $# -gt 0 ]]; do
                         shift
                         shift
                         ;;
-                --path)
-                        SIF_PATH="$2"
+                -f|--force)
+                        FORCE=true
+                        shift
+                        ;;
+                -w|--workspace)
+                        WORKSPACE="$2"
                         shift
                         shift
                         ;;
@@ -124,7 +128,7 @@ print(':'.join(groups))
 SIF=$SIF_PATH
 
 HPL="/workspace/hpl.sh"
-DAT="--dat $HOME/HPL/datas/${VRAM}G_${NUM_NODES}node_${NUM_GPUS}GPU.dat"
+DAT="--dat $WORKSPACE/datas/${VRAM}G_${NUM_NODES}node_${NUM_GPUS}GPU.dat"
 CPU="--cpu-affinity \$CPU_LIST"
 CPUpRANK="--cpu-cores-per-rank ${CPU_PER_GPU}"
 GPU="--gpu-affinity ${GPU_AFFINITY_STRING}"
@@ -152,6 +156,10 @@ if [ ! -d "datas" ]; then
 	mkdir -p datas
 fi
 DOTDAT="datas/${VRAM}G_${NUM_NODES}node_${NUM_GPUS}GPU.dat"
+if [ $FORCE ]; then
+    rm $DOTDAT
+fi
+
 if [ ! -f $DOTDAT ]; then
     HPL_N=$(python3 -c "
 tmpn = ($VRAM * 1024**3 * 0.9 * $NUM_NODES * $NUM_GPUS / 8) ** 0.5
